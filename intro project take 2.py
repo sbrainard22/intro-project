@@ -6,18 +6,17 @@ Created on Tue Jun 11 10:39:29 2024
 @author: seychellebrainard
 """
 
-import netCDF4 as nc
+
 import numpy as np
 import xarray as xr
+import os
 import cmocean
 import cartopy.crs as ccrs
 from matplotlib import pyplot as plt
 
-fn = '/Users/seychellebrainard/desktop/met/intro_project.nc'
-ds = xr.open_mfdataset(fn)
-
-
-
+cwd = os.getcwd()
+fh = cwd + "/met/intro_project.nc"
+ds = xr.open_dataset(fh)
 
 ds_period = ds.sel(time=slice('2015', '2020'))
 ds_surface = ds_period['thetao'].isel(depth = 0)
